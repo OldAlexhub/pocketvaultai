@@ -1,0 +1,7 @@
+PocketVault AI does not require an account, does not use a backend, does not request internet permission, does not use ads or analytics, and does not collect user data to Old Alex Hub servers.
+
+Vault data is stored locally on the device. Structured vault data is encrypted at rest using Android Keystore-backed encryption. Selected images are copied into Android private app storage. Users can delete all local data in Settings.
+
+Notifications are used only for local reminders when enabled. Optional app lock uses Android device authentication. The app does not collect biometric data.
+
+Exports are created only when the user chooses to export, and exported files are the user's responsibility to protect.

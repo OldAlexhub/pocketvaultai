@@ -1,19 +1,21 @@
 {
   "name": "pocketvaultai",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^7.16.1",
+    "@react-navigation/native": "^7.2.4",
+    "@react-navigation/native-stack": "^7.15.1",
     "react": "19.2.3",
     "react-native": "0.85.3",
-    "@react-native/new-app-screen": "0.85.3",
-    "react-native-safe-area-context": "^5.5.2"
+    "react-native-safe-area-context": "^5.5.2",
+    "react-native-screens": "^4.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

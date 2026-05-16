@@ -1,13 +1,10 @@
-/**
- * @format
- */
-
 import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
+import renderer from 'react-test-renderer';
 import App from '../App';
 
-test('renders correctly', async () => {
-  await ReactTestRenderer.act(() => {
-    ReactTestRenderer.create(<App />);
-  });
+jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
+
+test('PocketVault AI renders', () => {
+  const tree = renderer.create(<App />).toJSON();
+  expect(tree).toBeTruthy();
 });

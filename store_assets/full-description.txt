@@ -1,0 +1,24 @@
+PocketVault AI is a private offline vault for organizing personal cards, document reference copies, renewal dates, vehicle documents, memberships, warranty cards, emergency references, and daily carry checklists.
+
+Keep important information organized on your Android device with no account, no cloud, no backend, no ads, and no tracking.
+
+What you can organize:
+
+- Vehicle registration references
+- Auto insurance card references
+- Driver license reference details
+- Membership cards
+- Loyalty cards
+- Work or school cards
+- Emergency cards
+- Travel document references
+- Warranty cards
+- Renewal and expiration dates
+
+Carry Modes help you prepare for common situations like driving, work, gym, medical visits, travel, school or kids, and errands. Run a Daily Carry Check to review the references you want to have with you.
+
+Smart local insights run on your device using the included Python engine. PocketVault AI can highlight upcoming renewal dates, missing carry mode references, possible duplicates, and items that may need review.
+
+Your vault stays on your device. PocketVault AI does not require internet access and does not send your vault to Old Alex Hub servers.
+
+PocketVault AI stores personal reference copies only. It does not replace official physical documents, legal IDs, insurance cards, government records, or documents required by authorities.

@@ -1,0 +1,9 @@
+Initial release:
+- Private local card and document vault
+- Renewal and expiration reminders
+- Daily Carry Check
+- Carry Modes
+- Smart local insights powered by on-device Python
+- Local export and import
+- Optional app lock
+- No account, no backend, no tracking

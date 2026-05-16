@@ -28,6 +28,10 @@ build/
 .idea
 .gradle
 local.properties
+android/local.properties
+android/keystore/
+android/keystore/*.properties
+android/keystore/*.keystore
 *.iml
 *.hprof
 .cxx/

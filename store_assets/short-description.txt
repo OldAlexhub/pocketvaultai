@@ -1,0 +1,1 @@
+Private offline vault for cards, IDs, documents, renewals, and daily carry checks.
