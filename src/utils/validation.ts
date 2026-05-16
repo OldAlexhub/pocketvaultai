@@ -9,7 +9,7 @@ export function parseReminderDays(value: string): number[] {
   const parsed = value
     .split(',')
     .map(part => Number(part.trim()))
-    .filter(value => Number.isInteger(value) && value > 0);
+    .filter(dayValue => Number.isInteger(dayValue) && dayValue > 0);
   return Array.from(new Set(parsed)).sort((a, b) => b - a);
 }
 

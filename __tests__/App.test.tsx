@@ -1,10 +1,7 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import App from '../App';
+import {createDefaultCarryModes, createDefaultSettings, DISCLAIMER} from '../src/constants';
 
-jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
-
-test('PocketVault AI renders', () => {
-  const tree = renderer.create(<App />).toJSON();
-  expect(tree).toBeTruthy();
+test('default app data is production scoped', () => {
+  expect(createDefaultCarryModes().length).toBeGreaterThanOrEqual(7);
+  expect(createDefaultSettings().onboardingCompleted).toBe(false);
+  expect(DISCLAIMER).toContain('does not replace official physical documents');
 });

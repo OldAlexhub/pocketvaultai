@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Alert, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Alert, Pressable, StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Button} from '../components/Button';
 import {Card} from '../components/Card';

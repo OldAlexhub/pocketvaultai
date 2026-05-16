@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Alert, Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {Alert, Image, StyleSheet, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Button} from '../components/Button';
 import {Card} from '../components/Card';
@@ -20,12 +20,14 @@ export function ItemDetailScreen() {
   const {data, deleteItem, archiveItem, toggleFavorite, markItemUsed, addUsageEvent, saveItem} = useVault();
   const item = data.items.find(value => value.id === route.params?.itemId);
   const [revealed, setRevealed] = useState(false);
+  const viewedLogged = useRef(false);
 
   useEffect(() => {
-    if (item) {
+    if (item && !viewedLogged.current) {
+      viewedLogged.current = true;
       saveItem({...item, lastViewedAt: new Date().toISOString()}).catch(() => undefined);
     }
-  }, []);
+  }, [item, saveItem]);
 
   if (!item) {
     return (

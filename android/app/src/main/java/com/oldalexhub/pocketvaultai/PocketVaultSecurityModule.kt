@@ -17,7 +17,7 @@ class PocketVaultSecurityModule(private val reactContext: ReactApplicationContex
   private var pendingPromise: Promise? = null
 
   private val listener: ActivityEventListener = object : BaseActivityEventListener() {
-    override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
       if (requestCode != REQUEST_AUTH) {
         return
       }
@@ -44,7 +44,7 @@ class PocketVaultSecurityModule(private val reactContext: ReactApplicationContex
   @ReactMethod
   fun authenticate(title: String, description: String, promise: Promise) {
     try {
-      val activity = currentActivity
+      val activity = getCurrentActivity()
       val keyguard = reactContext.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
       if (activity == null || !keyguard.isDeviceSecure) {
         val result = JSONObject()

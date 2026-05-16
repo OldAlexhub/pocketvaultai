@@ -27,7 +27,7 @@ class PocketVaultFileModule(private val reactContext: ReactApplicationContext) :
   private var pendingMimeType: String? = null
 
   private val listener: ActivityEventListener = object : BaseActivityEventListener() {
-    override fun onActivityResult(activity: Activity?, requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
       val promise = pendingPromise ?: return
       if (resultCode != Activity.RESULT_OK) {
         clearPending()
@@ -94,7 +94,7 @@ class PocketVaultFileModule(private val reactContext: ReactApplicationContext) :
   @ReactMethod
   fun createDocument(fileName: String, mimeType: String, content: String, promise: Promise) {
     try {
-      val activity = currentActivity ?: throw IllegalStateException("No active Android activity.")
+      val activity = getCurrentActivity() ?: throw IllegalStateException("No active Android activity.")
       if (pendingPromise != null) {
         promise.reject("POCKETVAULT_FILE_BUSY", "Another file action is active.")
         return
@@ -117,7 +117,7 @@ class PocketVaultFileModule(private val reactContext: ReactApplicationContext) :
   @ReactMethod
   fun openDocument(mimeType: String, promise: Promise) {
     try {
-      val activity = currentActivity ?: throw IllegalStateException("No active Android activity.")
+      val activity = getCurrentActivity() ?: throw IllegalStateException("No active Android activity.")
       if (pendingPromise != null) {
         promise.reject("POCKETVAULT_FILE_BUSY", "Another file action is active.")
         return
@@ -137,7 +137,7 @@ class PocketVaultFileModule(private val reactContext: ReactApplicationContext) :
   @ReactMethod
   fun pickImage(promise: Promise) {
     try {
-      val activity = currentActivity ?: throw IllegalStateException("No active Android activity.")
+      val activity = getCurrentActivity() ?: throw IllegalStateException("No active Android activity.")
       if (pendingPromise != null) {
         promise.reject("POCKETVAULT_FILE_BUSY", "Another file action is active.")
         return

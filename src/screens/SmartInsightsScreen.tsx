@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Button} from '../components/Button';
@@ -15,18 +15,18 @@ export function SmartInsightsScreen() {
   const [result, setResult] = useState<InsightResult | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const load = async () => {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       setResult(await callPythonInsights(data));
     } finally {
       setLoading(false);
     }
-  };
+  }, [data]);
 
   useEffect(() => {
     load();
-  }, [data]);
+  }, [load]);
 
   return (
     <ScrollView
