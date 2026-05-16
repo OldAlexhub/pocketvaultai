@@ -4,6 +4,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {
+  ClipboardCheck,
+  Home,
+  Lightbulb,
+  Settings,
+  WalletCards,
+} from 'lucide-react-native';
 import {VaultProvider, useVault} from './src/context/VaultContext';
 import {OnboardingScreen} from './src/screens/OnboardingScreen';
 import {HomeScreen} from './src/screens/HomeScreen';
@@ -46,6 +53,27 @@ export type MainTabParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
+type TabIconProps = {color: string; size: number; focused: boolean};
+type LucideIcon = React.ComponentType<{color: string; size: number; strokeWidth: number}>;
+
+function makeTabIcon(Icon: LucideIcon) {
+  return function TabBarIcon({color, size, focused}: TabIconProps) {
+    return (
+      <Icon
+        color={color}
+        size={Math.max(22, size)}
+        strokeWidth={focused ? 2.8 : 2.2}
+      />
+    );
+  };
+}
+
+const homeTabIcon = makeTabIcon(Home);
+const vaultTabIcon = makeTabIcon(WalletCards);
+const carryTabIcon = makeTabIcon(ClipboardCheck);
+const insightsTabIcon = makeTabIcon(Lightbulb);
+const settingsTabIcon = makeTabIcon(Settings);
+
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -56,11 +84,11 @@ function MainTabs() {
         tabBarStyle: styles.tabBar,
         tabBarLabelStyle: styles.tabLabel,
       }}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{tabBarLabel: 'Home'}} />
-      <Tab.Screen name="Vault" component={VaultScreen} options={{tabBarLabel: 'Vault'}} />
-      <Tab.Screen name="Carry" component={CarryModesScreen} options={{tabBarLabel: 'Carry'}} />
-      <Tab.Screen name="Insights" component={SmartInsightsScreen} options={{tabBarLabel: 'Insights'}} />
-      <Tab.Screen name="SettingsTab" component={SettingsScreen} options={{tabBarLabel: 'Settings'}} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: homeTabIcon, tabBarLabel: 'Home', title: 'Home'}} />
+      <Tab.Screen name="Vault" component={VaultScreen} options={{tabBarIcon: vaultTabIcon, tabBarLabel: 'Vault', title: 'Vault'}} />
+      <Tab.Screen name="Carry" component={CarryModesScreen} options={{tabBarIcon: carryTabIcon, tabBarLabel: 'Carry', title: 'Carry'}} />
+      <Tab.Screen name="Insights" component={SmartInsightsScreen} options={{tabBarIcon: insightsTabIcon, tabBarLabel: 'Insights', title: 'Insights'}} />
+      <Tab.Screen name="SettingsTab" component={SettingsScreen} options={{tabBarIcon: settingsTabIcon, tabBarLabel: 'Settings', title: 'Settings'}} />
     </Tab.Navigator>
   );
 }
