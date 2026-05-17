@@ -3,7 +3,7 @@ import {AppState, StatusBar, StyleSheet, Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaProvider, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
   ClipboardCheck,
   Home,
@@ -75,13 +75,14 @@ const insightsTabIcon = makeTabIcon(Lightbulb);
 const settingsTabIcon = makeTabIcon(Settings);
 
 function MainTabs() {
+  const insets = useSafeAreaInsets();
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.teal,
         tabBarInactiveTintColor: colors.muted,
-        tabBarStyle: styles.tabBar,
+        tabBarStyle: [styles.tabBar, {height: 64 + insets.bottom, paddingBottom: insets.bottom + 8}],
         tabBarLabelStyle: styles.tabLabel,
       }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: homeTabIcon, tabBarLabel: 'Home', title: 'Home'}} />
@@ -207,7 +208,7 @@ function AppNavigator() {
 function App() {
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle="light-content" backgroundColor={colors.navy} />
+      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
       <VaultProvider>
         <AppNavigator />
       </VaultProvider>
@@ -218,8 +219,6 @@ function App() {
 const styles = StyleSheet.create({
   tabBar: {
     borderTopColor: colors.border,
-    height: 64,
-    paddingBottom: 8,
     paddingTop: 8,
   },
   tabLabel: {
